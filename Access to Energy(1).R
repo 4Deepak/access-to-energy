@@ -18,7 +18,22 @@ glimpse(p)
 clean_names(p)
 p <- rename(p,Country_name=Entity)
 p %>% select(-`Number of people with access to electricity`)
-p %>%
-  rename(people_having_access_to_electricity=`Number of people with access to electricity`)
-p <- rename(p,`Number of people with access to electricity`=people_having_access_to_electricity)
-colnames(p)
+p %>% arrange(Country_name)
+p %>% arrange(-Year)
+p2 <- p %>% arrange(-Year)
+p %>% arrange(-`Number of people without access to electricity`)
+p3 <- p %>% arrange(-`Number of people without access to electricity`)
+drop_na(p)
+p4 <- drop_na(p)
+p %>% group_by(Country_name) %>% drop_na() %>% summarise(mean_Number_of_people_without_access_to_electricity = mean(`Number of people without access to electricity`))
+p5 <- p %>% group_by(Country_name) %>% drop_na() %>% summarise(mean_Number_of_people_without_access_to_electricity = mean(`Number of people without access to electricity`))
+p %>% 
+  group_by(Country_name) %>% 
+  drop_na() %>% 
+  summarise(max_Number_of_people_without_access_to_electricity = max(`Number of people without access to electricity`))
+p6 <- p %>% 
+  group_by(Country_name) %>% 
+  drop_na() %>% 
+  summarise(max_Number_of_people_without_access_to_electricity = max(`Number of people without access to electricity`))
+p %>% filter(Country_name == 'India', Year == '2016')
+p7 <- p %>% filter(Country_name == 'India')
