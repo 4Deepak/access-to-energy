@@ -17,6 +17,22 @@ head(p)
 glimpse(p)
 clean_names(p)
 p <- rename(p,Country_name=Entity)
+
+p <- p %>% mutate(Total_population=`Number of people without access to electricity`+`Number of people with access to electricity`)
+
+q <- p %>% mutate(Pct_of_population_having_access_to_electricity=(`Number of people with access to electricity`/Total_population)*100)
+
+print(q)
+colnames(p)
+colnames(q)
+nrow(p)  
+dim(p)  
+head(p) 
+str(p)
+str(q)
+summary(p)
+summary(q)
+
 p %>% select(-`Number of people with access to electricity`)
 p %>% arrange(Country_name)
 p %>% arrange(-Year)
